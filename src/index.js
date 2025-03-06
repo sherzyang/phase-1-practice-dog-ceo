@@ -39,7 +39,7 @@ function allActions(){
         toClick.target.classList.add("myStyle");
     }
 
-    // Render the enter list of dog breeds on DOM 
+    // Render the entire list of dog breeds on DOM 
     let pageList; 
     let li;
 
@@ -62,10 +62,10 @@ function allActions(){
     let dropdown = document.getElementById("breed-dropdown");
 
         // Create an all-list option in dropdown
-        let option = document.createElement("option");
-        dropdown.appendChild(option);
-        option.value = "all"
-        option.innerText = "All letters"
+        // let option = document.createElement("option");
+        // dropdown.appendChild(option);
+        // option.value = "all"
+        // option.innerText = "All letters"
 
         // Create a newList container for the filtered content  
         let ul = document.createElement("ul");
@@ -81,57 +81,27 @@ function allActions(){
             let letter = this.value;
             pageListChildren = document.getElementById("dog-breeds").children
             let allBreeds = []
-            let doggie;
             let allOne = [];
             
             for (i=1; i < pageListChildren.length; i++){
-                doggie = pageListChildren[i].innerText;
-                allBreeds.push(doggie);
+                allBreeds.push(pageListChildren[i].innerText);
             }
+
             
-            if (letter == 'a'){
-                allBreeds.filter((item)=>{
-                    if (item[0] == 'a'){
-                        allOne.push(item)
-                        allOne.forEach((item) =>{
-                        shortList.appendChild(li);
-                        li.innerText = item})
-                    }
-                })
+            function doggieFilter(item){
+                if (item[0] == letter){
+                    allOne.push(item)
+                    
+                }
+                else {
+                    console.log("Something went wrong")
+                }
             }
-            else if (letter == 'b'){
-                allBreeds.filter((item)=>{
-                    if (item[0] == 'b'){
-                        allOne.push(item)
-                        allOne.forEach((item) =>{
-                            shortList.appendChild(li);
-                            li.innerText = item})
-                        }
-                    })
-            }
-            else if (letter == 'c'){
-                allBreeds.filter((item)=>{
-                    if (item[0] == 'c'){
-                        allOne.push(item)
-                        allOne.forEach((item) =>{
-                            shortList.appendChild(li);
-                            li.innerText = item})
-                        }
-                    })
-            }
-            else if (letter == 'd'){
-                allBreeds.filter((item)=>{
-                    if (item[0] == 'd'){
-                        allOne.push(item)
-                        allOne.forEach((item) =>{
-                            shortList.appendChild(li);
-                            li.innerText = item})
-                        }
-                    })
-            }
-            else if (letter == "all"){
-                // pageList.style.display = 'none';
-            }
+
+            allBreeds.filter(doggieFilter)
+            p = document.createElement('p');
+            shortList.appendChild(p);
+            p.innerText = allOne;
 
         }
 
